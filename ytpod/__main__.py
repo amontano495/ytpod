@@ -5,6 +5,7 @@ import sys
 from datetime import date,datetime
 def main():
     url_file = open("urls","r")
+    #cache_file = open("cache","r")
     for rss_url in url_file:
     
         feed = feedparser.parse(rss_url)
@@ -17,6 +18,7 @@ def main():
             if delta <= 1:
                 URLS = [entry.link]
                 ydl_opts = {
+                    'download_archive':'cache',
                     'format': 'm4a/bestaudio/best',
                     # ℹ️ See help(yt_dlp.postprocessor) for a list of available Postprocessors and their arguments
                     'postprocessors': [{  # Extract audio using ffmpeg
